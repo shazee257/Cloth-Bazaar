@@ -28,7 +28,7 @@ namespace ClothBazar.Web.Controllers
         public ActionResult Create(Category category)
         {
             categoryService.SaveCategory(category);
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -45,5 +45,21 @@ namespace ClothBazar.Web.Controllers
             categoryService.UpdateCategory(category);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var category = categoryService.GetCategory(id);
+;            //categoryService.GetCategory(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Category category)
+        {
+            categoryService.DeleteCategory(category.ID);
+            return RedirectToAction("Index");
+        }
+
     }
 }

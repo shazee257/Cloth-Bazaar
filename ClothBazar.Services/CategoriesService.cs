@@ -28,19 +28,29 @@ namespace ClothBazar.Services
             }
         }
 
-        /*public Category GetCategory(int id)
+        public Category GetCategory(int id)
         {
             using (var context = new CBContext())
             {
                 return context.Categories.Find(id);
             }
-        }*/
+        }
 
         public void UpdateCategory(Category category)
         {
             using (var context = new CBContext())
             {
                 context.Entry(category).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public void DeleteCategory(int id)
+        {
+            using (var context = new CBContext())
+            {
+                var category = context.Categories.Find(id);
+                context.Categories.Remove(category);
                 context.SaveChanges();
             }
         }
