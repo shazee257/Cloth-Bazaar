@@ -1,0 +1,38 @@
+﻿@model List<ClothBazar.Entities.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2>CATEGORY LIST</h2>
+
+<hr />
+
+<table>
+    <tr>
+        <td width="150"><h3>Name</h3></td>
+        <td width="200"><h3>Description</h3></td>
+        <td width="50"></td>
+        <td width="50"></td>
+    </tr>
+
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td>@category.Name</td>
+            <td>@category.Description</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { ID = @category.ID }, new { @class = "btn btn-info btn-lg" })</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { ID = @category.ID }, new { @class = "btn btn-danger btn-lg" })</td>
+        </tr>
+
+
+    }
+</table>
+
+<hr />
+<br />
+
+
+
+@Html.ActionLink("Add New Category", "Create", "Category", new { area = "" }, new { @class = "btn btn-primary btn-lg" })

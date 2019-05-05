@@ -11,6 +11,14 @@ namespace ClothBazar.Services
 {
     public class CategoriesService
     {
+        public List<Category> GetCategories()
+        {
+            using (var context = new CBContext())
+            {
+                return context.Categories.ToList();
+            }
+        }
+
         public void SaveCategory(Category category)
         {
             using (var context = new CBContext())
@@ -19,5 +27,23 @@ namespace ClothBazar.Services
                 context.SaveChanges();
             }
         }
+
+        /*public Category GetCategory(int id)
+        {
+            using (var context = new CBContext())
+            {
+                return context.Categories.Find(id);
+            }
+        }*/
+
+        public void UpdateCategory(Category category)
+        {
+            using (var context = new CBContext())
+            {
+                context.Entry(category).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
     }
 }
